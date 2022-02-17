@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ID} from '@datorama/akita';
+
+import {Todo} from '../../store/todos';
 
 @Component({
   selector: 'app-todo-item',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoItemComponent implements OnInit {
 
+  @Input()
+  todo!: Todo;
+
+  @Output()
+  complete = new EventEmitter<Todo>();
+
+  @Output()
+  delete = new EventEmitter<ID>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  handleComplete(): void {
+    this.complete.emit({...this.todo, completed: !this.todo.completed});
   }
 
 }

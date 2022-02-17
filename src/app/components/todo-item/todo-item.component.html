@@ -1,1 +1,16 @@
-<p>todo-item works!</p>
+<nz-card class="todo-item">
+  <div nz-row>
+    <div
+      nz-col
+      class="todo-item__title"
+      [class.completed]="todo.completed"
+      [nzSpan]="22"
+      (click)="handleComplete()"
+    >
+      <span>{{todo.title}}</span>
+    </div>
+    <div nz-col [nzSpan]="2">
+      <i nz-icon nzType="delete" nzTheme="outline" (click)="delete.emit(todo.id)"></i>
+    </div>
+  </div>
+</nz-card>

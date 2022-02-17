@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 
-import {Todo, TodosQuery} from '../../store/todos';
+import {Todo, TodosQuery, TodosService} from '../../store/todos';
+import {ID} from "@datorama/akita";
 
 @Component({
   selector: 'app-todos-page',
@@ -14,10 +15,23 @@ export class TodosPageComponent implements OnInit {
 
   constructor(
     private todosQuery: TodosQuery,
+    private todosService: TodosService,
   ) {
   }
 
   ngOnInit(): void {
+  }
+
+  add(title: string): void {
+    this.todosService.add(title);
+  }
+
+  complete(todo: Todo): void {
+    this.todosService.complete(todo);
+  }
+
+  delete(id: ID): void {
+    this.todosService.delete(id);
   }
 
 }

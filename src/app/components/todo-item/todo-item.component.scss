@@ -1,0 +1,17 @@
+.todo-item {
+  width: 300px;
+
+  &__title {
+    cursor: pointer;
+
+    &.completed {
+      text-decoration: line-through;
+    }
+  }
+
+  ::ng-deep {
+    .anticon-delete {
+      cursor: pointer
+    }
+  }
+}

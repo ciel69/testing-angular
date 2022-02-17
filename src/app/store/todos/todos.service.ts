@@ -4,7 +4,8 @@ import {tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 
 import {TodosStore} from './todos.store';
-import {Todo} from './todo.model';
+import {createTodo, Todo} from './todo.model';
+import {ID} from "@datorama/akita";
 
 @Injectable({providedIn: 'root'})
 export class TodosService {
@@ -28,6 +29,21 @@ export class TodosService {
       console.log('get', entities);
       this.todosStore.set(entities)
     }));
+  }
+
+  add(title: string): void {
+    const todo = createTodo({ id: Math.random(), title });
+    this.todosStore.add(todo);
+  }
+
+  complete({ id, completed }: Todo): void {
+    this.todosStore.update(id, {
+      completed
+    });
+  }
+
+  delete(id: ID): void {
+    this.todosStore.remove(id);
   }
 
 }

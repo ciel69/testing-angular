@@ -1,1 +1,17 @@
-<p>todos-page works!</p>
+<div class="todos-page">
+  <app-form
+    (addTodo)="add($event)"
+  ></app-form>
+  <div *ngIf="todos$ | async as todos; else notItems" class="todos-page__list">
+    <app-todo-item
+      *ngFor="let todo of todos"
+      [todo]="todo"
+      (complete)="complete($event)"
+      (delete)="delete($event)"
+    ></app-todo-item>
+  </div>
+  <ng-template #notItems>
+    <h4 nz-typography>No elements</h4>
+  </ng-template>
+</div>
+

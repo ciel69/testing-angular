@@ -6,9 +6,11 @@ export interface Todo {
   completed: boolean;
 }
 
-export function createTodo(params: Partial<Todo>) {
+export function createTodo({ id, title }: Partial<Todo>) {
   return {
-
+    id,
+    title,
+    completed: false
   } as Todo;
 }
 
