@@ -1,17 +1,29 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import {TestBed} from '@angular/core/testing';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {of} from 'rxjs';
+
+import {AppComponent} from './app.component';
+import {Todo, TodosService} from './store/todos';
 
 describe('AppComponent', () => {
+
+  let service: TodosService;
+  const todosServiceStub = {
+    get: () => of([])
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
       declarations: [
         AppComponent
       ],
+      providers: [{provide: TodosService, useValue: todosServiceStub}],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
+  });
+
+  beforeEach(() => {
+    service = TestBed.inject(TodosService);
   });
 
   it('should create the app', () => {
@@ -20,16 +32,24 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'testing-angular'`, () => {
+  it(`should have as title 'Todo list'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('testing-angular');
+    expect(app.title).toEqual('Todo list');
+  });
+
+  it('should called get', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const openSpy = spyOn(service, 'get').and.returnValue(of([]));
+    fixture.detectChanges();
+    expect(openSpy).toHaveBeenCalled();
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('testing-angular app is running!');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Todo list');
   });
+
 });
