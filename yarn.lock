@@ -2745,6 +2745,11 @@
   dependencies:
     core-js "^3.8.2"
 
+"@storybook/preset-scss@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@storybook/preset-scss/-/preset-scss-1.0.3.tgz#8ac834545c642dada0f64f510ef08dfb882e9737"
+  integrity sha512-o9Iz6wxPeNENrQa2mKlsDKynBfqU2uWaRP80HeWp4TkGgf7/x3DVF2O7yi9N0x/PI1qzzTTpxlQ90D62XmpiTw==
+
 "@storybook/preview-web@6.4.19":
   version "6.4.19"
   resolved "https://registry.yarnpkg.com/@storybook/preview-web/-/preview-web-6.4.19.tgz#bdfab7b2f760caf72140229dd64fd57617ad000b"
@@ -5475,6 +5480,20 @@ css-loader@^5.0.1:
     postcss-modules-values "^4.0.0"
     postcss-value-parser "^4.1.0"
     schema-utils "^3.0.0"
+    semver "^7.3.5"
+
+css-loader@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-6.6.0.tgz#c792ad5510bd1712618b49381bd0310574fafbd3"
+  integrity sha512-FK7H2lisOixPT406s5gZM1S3l8GrfhEBT3ZiL2UX1Ng1XWs0y2GPllz/OTyvbaHe12VgQrIXIzuEGVlbUhodqg==
+  dependencies:
+    icss-utils "^5.1.0"
+    postcss "^8.4.5"
+    postcss-modules-extract-imports "^3.0.0"
+    postcss-modules-local-by-default "^4.0.0"
+    postcss-modules-scope "^3.0.0"
+    postcss-modules-values "^4.0.0"
+    postcss-value-parser "^4.2.0"
     semver "^7.3.5"
 
 css-prefers-color-scheme@^6.0.2:
@@ -10856,7 +10875,7 @@ postcss@^7.0.14, postcss@^7.0.26, postcss@^7.0.32, postcss@^7.0.36, postcss@^7.0
     picocolors "^0.2.1"
     source-map "^0.6.1"
 
-postcss@^8.2.14, postcss@^8.2.15, postcss@^8.3.7:
+postcss@^8.2.14, postcss@^8.2.15, postcss@^8.3.7, postcss@^8.4.5:
   version "8.4.6"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.6.tgz#c5ff3c3c457a23864f32cb45ac9b741498a09ae1"
   integrity sha512-OovjwIzs9Te46vlEx7+uXB0PLijpwjXGKXjVGGPIGubGpq7uh5Xgf6D6FiJ/SzJMBosHDp6a2hiXOS97iBXcaA==
@@ -11786,10 +11805,27 @@ sass-loader@^10.1.0:
     schema-utils "^3.0.0"
     semver "^7.3.2"
 
+sass-loader@^12.6.0:
+  version "12.6.0"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-12.6.0.tgz#5148362c8e2cdd4b950f3c63ac5d16dbfed37bcb"
+  integrity sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==
+  dependencies:
+    klona "^2.0.4"
+    neo-async "^2.6.2"
+
 sass@1.49.0:
   version "1.49.0"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.49.0.tgz#65ec1b1d9a6bc1bae8d2c9d4b392c13f5d32c078"
   integrity sha512-TVwVdNDj6p6b4QymJtNtRS2YtLJ/CqZriGg0eIAbAKMlN8Xy6kbv33FsEZSF7FufFFM705SQviHjjThfaQ4VNw==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
+    immutable "^4.0.0"
+    source-map-js ">=0.6.2 <2.0.0"
+
+sass@^1.49.8:
+  version "1.49.8"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.49.8.tgz#9bbbc5d43d14862db07f1c04b786c9da9b641828"
+  integrity sha512-NoGOjvDDOU9og9oAxhRnap71QaTjjlzrvLnKecUJ3GxhaQBrV6e7gPuSPF28u1OcVAArVojPAe4ZhOXwwC4tGw==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -12608,6 +12644,11 @@ style-loader@^2.0.0:
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
+
+style-loader@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-3.3.1.tgz#057dfa6b3d4d7c7064462830f9113ed417d38575"
+  integrity sha512-GPcQ+LDJbrcxHORTRes6Jy2sfvK2kS6hpSfI/fXhPt+spVzxF6LJ1dHLN9zIGmVaaP044YKaIatFaufENRiDoQ==
 
 style-to-object@0.3.0, style-to-object@^0.3.0:
   version "0.3.0"

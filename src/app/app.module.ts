@@ -5,12 +5,6 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NzTypographyModule } from 'ng-zorro-antd/typography';
-import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 
@@ -21,6 +15,7 @@ import { environment } from '../environments/environment';
 import { TodosPageComponent } from './components/todos-page/todos-page.component';
 import { FormComponent } from './components/form/form.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import {NzModule} from "./nz.module";
 
 registerLocaleData(en);
 
@@ -38,12 +33,7 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NzGridModule,
-    NzTypographyModule,
-    NzCardModule,
-    NzIconModule,
-    NzInputModule,
-    NzButtonModule
+    NzModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

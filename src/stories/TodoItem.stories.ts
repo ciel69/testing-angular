@@ -2,11 +2,9 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 
-import {TodoItemComponent} from "../app/components/todo-item/todo-item.component";
-import {NzGridModule} from "ng-zorro-antd/grid";
-import {NzTypographyModule} from "ng-zorro-antd/typography";
-import {NzCardModule} from "ng-zorro-antd/card";
-import {NzIconModule} from "ng-zorro-antd/icon";
+import {TodoItemComponent} from '../app/components/todo-item/todo-item.component';
+import {NzModule} from '../app/nz.module';
+
 
 const todo = {
   id: 1,
@@ -19,7 +17,7 @@ export default {
   component: TodoItemComponent,
   decorators: [
     moduleMetadata({
-      imports: [NzGridModule, NzTypographyModule, NzCardModule, NzIconModule],
+      imports: [NzModule],
     }),
   ],
 } as Meta;
@@ -28,8 +26,8 @@ const Template: Story<TodoItemComponent> = (args: TodoItemComponent) => ({
   props: args,
 });
 
-export const Default = Template.bind({});
-Default.args = {
+export const Start = Template.bind({});
+Start.args = {
   todo,
 };
 
