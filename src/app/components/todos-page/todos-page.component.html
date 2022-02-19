@@ -2,7 +2,7 @@
   <app-form
     (addTodo)="add($event)"
   ></app-form>
-  <div *ngIf="todos$ | async as todos; else notItems" class="todos-page__list">
+  <div *ngIf="todos$ | async as todos;" class="todos-page__list">
     <app-todo-item
       *ngFor="let todo of todos"
       [todo]="todo"
@@ -10,8 +10,8 @@
       (delete)="delete($event)"
     ></app-todo-item>
   </div>
-  <ng-template #notItems>
+  <div class="no-todos" *ngIf="!(todos$ | async)?.length">
     <h4 nz-typography>No elements</h4>
-  </ng-template>
+  </div>
 </div>
 

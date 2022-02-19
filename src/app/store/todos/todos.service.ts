@@ -1,4 +1,3 @@
-import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
@@ -25,10 +24,7 @@ export class TodosService {
         title: 'test todo 2',
         completed: false
       }
-    ]).pipe(tap(entities => {
-      console.log('get', entities);
-      this.todosStore.set(entities)
-    }));
+    ]).pipe(tap(entities => this.todosStore.set(entities)));
   }
 
   add(title: string): void {

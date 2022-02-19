@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {Todo, TodosQuery, TodosService} from '../../store/todos';
@@ -9,7 +9,7 @@ import {ID} from "@datorama/akita";
   templateUrl: './todos-page.component.html',
   styleUrls: ['./todos-page.component.scss']
 })
-export class TodosPageComponent implements OnInit {
+export class TodosPageComponent {
 
   public todos$: Observable<Todo[]> = this.todosQuery.selectAll();
 
@@ -17,9 +17,6 @@ export class TodosPageComponent implements OnInit {
     private todosQuery: TodosQuery,
     private todosService: TodosService,
   ) {
-  }
-
-  ngOnInit(): void {
   }
 
   add(title: string): void {
