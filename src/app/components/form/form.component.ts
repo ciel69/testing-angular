@@ -16,8 +16,10 @@ export class FormComponent implements OnInit {
   }
 
   add(input: HTMLInputElement): void {
-    this.addTodo.emit(input.value);
-    input.value = '';
+    if (input.value) {
+      this.addTodo.emit(input.value);
+      input.value = '';
+    }
   }
 
 }
