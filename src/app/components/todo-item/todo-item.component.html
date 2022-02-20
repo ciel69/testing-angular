@@ -7,10 +7,10 @@
       [nzSpan]="22"
       (click)="handleComplete()"
     >
-      <span>{{todo.title}}</span>
+      <p><b>{{todo.title}}</b></p>
     </div>
     <div nz-col [nzSpan]="2">
-      <i nz-icon nzType="delete" nzTheme="outline" (click)="delete.emit(todo.id)"></i>
+      <i nz-icon nzType="question-circle" nzTheme="outline" (click)="delete.emit(todo.id)"></i>
     </div>
   </div>
 </nz-card>
