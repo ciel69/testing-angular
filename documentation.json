@@ -110,7 +110,7 @@
         },
         {
             "name": "TodosService",
-            "id": "injectable-TodosService-b29cfbfbde99a20dfdf1943b72f29ae9fd8ddf9c709a114a0e52c9e954e4801d68b563285dba2971f91d3cc36d6b12db527e5f0a914044e05179c3bd4d43608b",
+            "id": "injectable-TodosService-10f3548214467431a3ca21d53afd1fcbd3c84d6d703a596cc2e06e8c1fb8e794f42d43338c6a827856f4f7e680a0e2db9ffad83e7764e3146dfe10a1f7d23f13",
             "file": "src/app/store/todos/todos.service.ts",
             "properties": [],
             "methods": [
@@ -127,7 +127,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 34,
+                    "line": 30,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -154,7 +154,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 35,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -181,7 +181,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45,
+                    "line": 41,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -202,7 +202,7 @@
                     "optional": false,
                     "returnType": "Observable<Todo[]>",
                     "typeParameters": [],
-                    "line": 16,
+                    "line": 15,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -211,7 +211,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {HttpClient} from '@angular/common/http';\nimport {Injectable} from '@angular/core';\nimport {tap} from 'rxjs/operators';\nimport {Observable, of} from 'rxjs';\n\nimport {TodosStore} from './todos.store';\nimport {createTodo, Todo} from './todo.model';\nimport {ID} from \"@datorama/akita\";\n\n@Injectable({providedIn: 'root'})\nexport class TodosService {\n\n  constructor(private todosStore: TodosStore) {\n  }\n\n  get(): Observable<Todo[]> {\n    return of<Todo[]>([\n      {\n        id: 1,\n        title: 'test todo',\n        completed: false\n      },\n      {\n        id: 2,\n        title: 'test todo 2',\n        completed: false\n      }\n    ]).pipe(tap(entities => {\n      console.log('get', entities);\n      this.todosStore.set(entities)\n    }));\n  }\n\n  add(title: string): void {\n    const todo = createTodo({ id: Math.random(), title });\n    this.todosStore.add(todo);\n  }\n\n  complete({ id, completed }: Todo): void {\n    this.todosStore.update(id, {\n      completed\n    });\n  }\n\n  delete(id: ID): void {\n    this.todosStore.remove(id);\n  }\n\n}\n",
+            "sourceCode": "import {Injectable} from '@angular/core';\nimport {tap} from 'rxjs/operators';\nimport {Observable, of} from 'rxjs';\n\nimport {TodosStore} from './todos.store';\nimport {createTodo, Todo} from './todo.model';\nimport {ID} from \"@datorama/akita\";\n\n@Injectable({providedIn: 'root'})\nexport class TodosService {\n\n  constructor(private todosStore: TodosStore) {\n  }\n\n  get(): Observable<Todo[]> {\n    return of<Todo[]>([\n      {\n        id: 1,\n        title: 'test todo',\n        completed: false\n      },\n      {\n        id: 2,\n        title: 'test todo 2',\n        completed: false\n      }\n    ]).pipe(tap(entities => this.todosStore.set(entities)));\n  }\n\n  add(title: string): void {\n    const todo = createTodo({ id: Math.random(), title });\n    this.todosStore.add(todo);\n  }\n\n  complete({ id, completed }: Todo): void {\n    this.todosStore.update(id, {\n      completed\n    });\n  }\n\n  delete(id: ID): void {\n    this.todosStore.remove(id);\n  }\n\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -225,7 +225,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 11,
+                "line": 10,
                 "jsdoctags": [
                     {
                         "name": "todosStore",
@@ -361,7 +361,7 @@
         },
         {
             "name": "FormComponent",
-            "id": "component-FormComponent-4824ed998272834f70a0fbc29ef69c49ae394f15dcb0ba6b10df62c914854ce1805e66370eecca6d0b834eff26ce75b61efd5228970f279a575026eb31fcd79b",
+            "id": "component-FormComponent-870e54ed0773d59d3433179d1989debb50ab313e3ba31aba4900535dc47961b9c5ac0c982a298e0314b7bd71420c9d5994b319f6da5ea36a6f75a0fe789e76e2",
             "file": "src/app/components/form/form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -436,7 +436,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {Component, EventEmitter, OnInit, Output} from '@angular/core';\n\n@Component({\n  selector: 'app-form',\n  templateUrl: './form.component.html',\n  styleUrls: ['./form.component.scss']\n})\nexport class FormComponent implements OnInit {\n\n  @Output()\n  addTodo = new EventEmitter<string>();\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n  add(input: HTMLInputElement): void {\n    this.addTodo.emit(input.value);\n    input.value = '';\n  }\n\n}\n",
+            "sourceCode": "import {Component, EventEmitter, OnInit, Output} from '@angular/core';\n\n@Component({\n  selector: 'app-form',\n  templateUrl: './form.component.html',\n  styleUrls: ['./form.component.scss']\n})\nexport class FormComponent implements OnInit {\n\n  @Output()\n  addTodo = new EventEmitter<string>();\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n  add(input: HTMLInputElement): void {\n    if (input.value) {\n      this.addTodo.emit(input.value);\n      input.value = '';\n    }\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -456,11 +456,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"todo-form\">\n  <nz-input-group nzSearch [nzAddOnAfter]=\"suffixIconButton\">\n    <input\n      #input\n      nz-input\n      type=\"text\"\n      placeholder=\"Add Todo...\"\n      (keydown.enter)=\"add(input)\"/>\n  </nz-input-group>\n  <ng-template #suffixIconButton>\n    <button\n      nz-button\n      nzType=\"primary\"\n      (click)=\"add(input)\"\n    >\n      <i nz-icon nzType=\"plus\" nzTheme=\"outline\"></i>\n    </button>\n  </ng-template>\n</div>\n\n"
+            "templateData": "<div class=\"todo-form\">\r\n  <nz-input-group nzSearch [nzAddOnAfter]=\"suffixIconButton\">\r\n    <input\r\n      #input\r\n      nz-input\r\n      type=\"text\"\r\n      placeholder=\"Add Todo...\"\r\n      (keydown.enter)=\"add(input)\"/>\r\n  </nz-input-group>\r\n  <ng-template #suffixIconButton>\r\n    <button\r\n      nz-button\r\n      nzType=\"primary\"\r\n      (click)=\"add(input)\"\r\n    >\r\n      <i nz-icon nzType=\"plus\" nzTheme=\"outline\"></i>\r\n    </button>\r\n  </ng-template>\r\n</div>\r\n\r\n"
         },
         {
             "name": "TodoItemComponent",
-            "id": "component-TodoItemComponent-69e1c02bc663f9cb8856da4c5eac14301c886d8bc35b28f0f850d2ce0eb66dba98b3696276eb33bd45f12b9cd30c21a5034d407e8c915fa4defc6a1bc3895f76",
+            "id": "component-TodoItemComponent-c9a922af804c83427305c717ea11db3c85360b1077b22d8850785d0b55afd3d72d5138ea23e0fb98dbad9eda9cb696161ed93a305cbdf650d8d1d911c85dbe84",
             "file": "src/app/components/todo-item/todo-item.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -512,17 +512,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 27,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 24,
+                    "line": 22,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -534,7 +524,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';\nimport {ID} from '@datorama/akita';\n\nimport {Todo} from '../../store/todos';\n\n@Component({\n  selector: 'app-todo-item',\n  templateUrl: './todo-item.component.html',\n  styleUrls: ['./todo-item.component.scss']\n})\nexport class TodoItemComponent implements OnInit {\n\n  @Input()\n  todo!: Todo;\n\n  @Output()\n  complete = new EventEmitter<Todo>();\n\n  @Output()\n  delete = new EventEmitter<ID>();\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n  handleComplete(): void {\n    this.complete.emit({...this.todo, completed: !this.todo.completed});\n  }\n\n}\n",
+            "sourceCode": "import {Component, EventEmitter, Input, Output} from '@angular/core';\nimport {ID} from '@datorama/akita';\n\nimport {Todo} from '../../store/todos';\n\n@Component({\n  selector: 'app-todo-item',\n  templateUrl: './todo-item.component.html',\n  styleUrls: ['./todo-item.component.scss']\n})\nexport class TodoItemComponent {\n\n  @Input()\n  todo!: Todo;\n\n  @Output()\n  complete = new EventEmitter<Todo>();\n\n  @Output()\n  delete = new EventEmitter<ID>();\n\n  handleComplete(): void {\n    this.complete.emit({...this.todo, completed: !this.todo.completed});\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -543,22 +533,11 @@
                 }
             ],
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 20
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<nz-card class=\"todo-item\">\n  <div nz-row>\n    <div\n      nz-col\n      class=\"todo-item__title\"\n      [class.completed]=\"todo.completed\"\n      [nzSpan]=\"22\"\n      (click)=\"handleComplete()\"\n    >\n      <span>{{todo.title}}</span>\n    </div>\n    <div nz-col [nzSpan]=\"2\">\n      <i nz-icon nzType=\"delete\" nzTheme=\"outline\" (click)=\"delete.emit(todo.id)\"></i>\n    </div>\n  </div>\n</nz-card>\n"
+            "templateData": "<nz-card class=\"todo-item\">\r\n  <div nz-row>\r\n    <div\r\n      nz-col\r\n      class=\"todo-item__title\"\r\n      [class.completed]=\"todo.completed\"\r\n      [nzSpan]=\"22\"\r\n      (click)=\"handleComplete()\"\r\n    >\r\n      <span>{{todo.title}}</span>\r\n    </div>\r\n    <div nz-col [nzSpan]=\"2\">\r\n      <i nz-icon nzType=\"delete\" nzTheme=\"outline\" (click)=\"delete.emit(todo.id)\"></i>\r\n    </div>\r\n  </div>\r\n</nz-card>\r\n"
         },
         {
             "name": "TodosPageComponent",
-            "id": "component-TodosPageComponent-56cdd10ae3530562fbd696bc7d24f01a33ec087540b2a3595404fd4a954b69d3a5da950274ea9206aabc35f4d64e67b451944316148a63db2962625e33446ca2",
+            "id": "component-TodosPageComponent-4916c756d9109da5aa0d9ab883baa154a199769947a4d40262a0898cc7ce4c48a8a45ccbd7f4a71e815eaf6353a497b083255ffb48da4eb75b1711cfd2cba50d",
             "file": "src/app/components/todos-page/todos-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -605,7 +584,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 25,
+                    "line": 22,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -633,7 +612,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 29,
+                    "line": 26,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -661,7 +640,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 33,
+                    "line": 30,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -675,16 +654,6 @@
                             }
                         }
                     ]
-                },
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 22,
-                    "deprecated": false,
-                    "deprecationMessage": ""
                 }
             ],
             "deprecated": false,
@@ -694,7 +663,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport {Observable} from 'rxjs';\n\nimport {Todo, TodosQuery, TodosService} from '../../store/todos';\nimport {ID} from \"@datorama/akita\";\n\n@Component({\n  selector: 'app-todos-page',\n  templateUrl: './todos-page.component.html',\n  styleUrls: ['./todos-page.component.scss']\n})\nexport class TodosPageComponent implements OnInit {\n\n  public todos$: Observable<Todo[]> = this.todosQuery.selectAll();\n\n  constructor(\n    private todosQuery: TodosQuery,\n    private todosService: TodosService,\n  ) {\n  }\n\n  ngOnInit(): void {\n  }\n\n  add(title: string): void {\n    this.todosService.add(title);\n  }\n\n  complete(todo: Todo): void {\n    this.todosService.complete(todo);\n  }\n\n  delete(id: ID): void {\n    this.todosService.delete(id);\n  }\n\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\nimport {Observable} from 'rxjs';\n\nimport {Todo, TodosQuery, TodosService} from '../../store/todos';\nimport {ID} from \"@datorama/akita\";\n\n@Component({\n  selector: 'app-todos-page',\n  templateUrl: './todos-page.component.html',\n  styleUrls: ['./todos-page.component.scss']\n})\nexport class TodosPageComponent {\n\n  public todos$: Observable<Todo[]> = this.todosQuery.selectAll();\n\n  constructor(\n    private todosQuery: TodosQuery,\n    private todosService: TodosService,\n  ) {\n  }\n\n  add(title: string): void {\n    this.todosService.add(title);\n  }\n\n  complete(todo: Todo): void {\n    this.todosService.complete(todo);\n  }\n\n  delete(id: ID): void {\n    this.todosService.delete(id);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -744,10 +713,7 @@
                     }
                 ]
             },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<div class=\"todos-page\">\n  <app-form\n    (addTodo)=\"add($event)\"\n  ></app-form>\n  <div *ngIf=\"todos$ | async as todos; else notItems\" class=\"todos-page__list\">\n    <app-todo-item\n      *ngFor=\"let todo of todos\"\n      [todo]=\"todo\"\n      (complete)=\"complete($event)\"\n      (delete)=\"delete($event)\"\n    ></app-todo-item>\n  </div>\n  <ng-template #notItems>\n    <h4 nz-typography>No elements</h4>\n  </ng-template>\n</div>\n\n"
+            "templateData": "<div class=\"todos-page\">\n  <app-form\n    (addTodo)=\"add($event)\"\n  ></app-form>\n  <div *ngIf=\"todos$ | async as todos;\" class=\"todos-page__list\">\n    <app-todo-item\n      *ngFor=\"let todo of todos\"\n      [todo]=\"todo\"\n      (complete)=\"complete($event)\"\n      (delete)=\"delete($event)\"\n    ></app-todo-item>\n  </div>\n  <div class=\"no-todos\" *ngIf=\"!(todos$ | async)?.length\">\n    <h4 nz-typography>No elements</h4>\n  </div>\n</div>\n\n"
         }
     ],
     "modules": [
@@ -849,13 +815,13 @@
         },
         {
             "name": "NzModule",
-            "id": "module-NzModule-4a53f476cc6aeedf9df4027cd626f4b1ca30d1d84a2450626302ac9807797bca4e9b31d262f69e5f2c505666bce04acd35dc3e72eb8bb2c62f7ea640dace138c",
+            "id": "module-NzModule-ee098ddb1dcf8c93d5a37d10eb3472b7099f65dd92c3789f4da209e85279ebae748495f420a2b31011eea260d68ae6131ecec5fc9607d5b53a68a6b611aae020",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/nz.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\nimport {NzGridModule} from \"ng-zorro-antd/grid\";\nimport {NzTypographyModule} from \"ng-zorro-antd/typography\";\nimport {NzCardModule} from \"ng-zorro-antd/card\";\nimport {NzIconModule} from \"ng-zorro-antd/icon\";\nimport {NzInputModule} from \"ng-zorro-antd/input\";\nimport {NzButtonModule} from \"ng-zorro-antd/button\";\n\n@NgModule({\n  imports: [\n    NzGridModule,\n    NzTypographyModule,\n    NzCardModule,\n    NzIconModule,\n    NzInputModule,\n    NzButtonModule\n  ],\n  exports: [\n    NzGridModule,\n    NzTypographyModule,\n    NzCardModule,\n    NzIconModule,\n    NzInputModule,\n    NzButtonModule\n  ],\n})\nexport class NzModule { }\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport {NzGridModule} from \"ng-zorro-antd/grid\";\nimport {NzTypographyModule} from \"ng-zorro-antd/typography\";\nimport {NzCardModule} from \"ng-zorro-antd/card\";\nimport {NzIconModule} from \"ng-zorro-antd/icon\";\nimport {NzInputModule} from \"ng-zorro-antd/input\";\nimport {NzButtonModule} from \"ng-zorro-antd/button\";\nimport {HttpClientModule} from \"@angular/common/http\";\n\n@NgModule({\n  imports: [\n    HttpClientModule,\n    NzGridModule,\n    NzTypographyModule,\n    NzCardModule,\n    NzIconModule,\n    NzInputModule,\n    NzButtonModule\n  ],\n  exports: [\n    HttpClientModule,\n    NzGridModule,\n    NzTypographyModule,\n    NzCardModule,\n    NzIconModule,\n    NzInputModule,\n    NzButtonModule\n  ],\n})\nexport class NzModule { }\n",
             "children": [
                 {
                     "type": "providers",
@@ -910,7 +876,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/TodoItem.stories.ts",
+                "file": "src/stories/From.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -966,6 +932,26 @@
                 "type": "literal type"
             },
             {
+                "name": "Start",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/TodoItem.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/From.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormComponent>",
+                "defaultValue": "(args: FormComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1001,7 +987,7 @@
                         "type": "Partial<Todo>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "5a92e6c9-23cb-4ec4-b67a-ae5847a48770",
+                        "destrucuredGroupId": "8512c640-3fa5-4fd3-aa5b-e79ca3c2e611",
                         "destructuredParameter": true
                     },
                     {
@@ -1009,7 +995,7 @@
                         "type": "",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "5a92e6c9-23cb-4ec4-b67a-ae5847a48770",
+                        "destrucuredGroupId": "8512c640-3fa5-4fd3-aa5b-e79ca3c2e611",
                         "destructuredParameter": true
                     }
                 ],
@@ -1019,7 +1005,7 @@
                         "type": "Partial<Todo>",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "5a92e6c9-23cb-4ec4-b67a-ae5847a48770",
+                        "destrucuredGroupId": "8512c640-3fa5-4fd3-aa5b-e79ca3c2e611",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -1030,7 +1016,7 @@
                         "type": "",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "5a92e6c9-23cb-4ec4-b67a-ae5847a48770",
+                        "destrucuredGroupId": "8512c640-3fa5-4fd3-aa5b-e79ca3c2e611",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -1096,7 +1082,7 @@
                     "defaultValue": "Template.bind({})"
                 },
                 {
-                    "name": "Default",
+                    "name": "Start",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/stories/TodoItem.stories.ts",
@@ -1145,6 +1131,28 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "literal type"
+                }
+            ],
+            "src/stories/From.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/From.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/From.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<FormComponent>",
+                    "defaultValue": "(args: FormComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -1212,7 +1220,7 @@
                             "type": "Partial<Todo>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "5a92e6c9-23cb-4ec4-b67a-ae5847a48770",
+                            "destrucuredGroupId": "8512c640-3fa5-4fd3-aa5b-e79ca3c2e611",
                             "destructuredParameter": true
                         },
                         {
@@ -1220,7 +1228,7 @@
                             "type": "",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "5a92e6c9-23cb-4ec4-b67a-ae5847a48770",
+                            "destrucuredGroupId": "8512c640-3fa5-4fd3-aa5b-e79ca3c2e611",
                             "destructuredParameter": true
                         }
                     ],
@@ -1230,7 +1238,7 @@
                             "type": "Partial<Todo>",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "5a92e6c9-23cb-4ec4-b67a-ae5847a48770",
+                            "destrucuredGroupId": "8512c640-3fa5-4fd3-aa5b-e79ca3c2e611",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -1241,7 +1249,7 @@
                             "type": "",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "5a92e6c9-23cb-4ec4-b67a-ae5847a48770",
+                            "destrucuredGroupId": "8512c640-3fa5-4fd3-aa5b-e79ca3c2e611",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -1342,7 +1350,7 @@
                 "linktype": "component",
                 "name": "TodoItemComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -1351,7 +1359,7 @@
                 "linktype": "component",
                 "name": "TodosPageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
@@ -1450,6 +1458,26 @@
                 "status": "low"
             },
             {
+                "filePath": "src/stories/From.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/From.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/stories/TodoItem.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -1464,7 +1492,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Default",
+                "name": "Start",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
