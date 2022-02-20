@@ -13,5 +13,11 @@
     .anticon-delete {
       cursor: pointer
     }
+
+  }
+}
+::ng-deep {
+  .todo-item.ant-card-bordered {
+    border: 4px solid #000;
   }
 }
